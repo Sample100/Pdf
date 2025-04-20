@@ -1,0 +1,44 @@
+<html>
+<head>
+<title> Student Registeration</title>
+<script>
+   function validateform()
+   {
+     var firstName=document.getElementById("firstName").value;
+     var lastName=document.getElementById("lastName").value;
+     var age=parseInt(document.getElementById("age").value);
+     var nameRegx=/^[A-Za-z]+$/;
+     
+     if(!firstName.match(nameRegex))
+     {
+        alert("first name should contain only alphabet character");
+        return false;
+     }
+     if(!lastName.match(nameRegex))
+     {
+        alert("last name should contain only alphabet character");
+        return false;
+     }   
+     if(age<18 || age>50)
+     {
+        alert("age should be 18 and 50");
+        return false;
+     }
+     return true;
+   }     
+</script>
+</head>
+<body>
+  <h2> Student Registration </h2>
+  <form onsubmit="return validateForm()">
+  <label for="firstName"> First Name</label>
+  <input type="text" name="firstName" id="fisrtName" placeholder="First Name" required><br> <br> 
+  <label for="lastName"> Last Name</label>
+  <input type="text" name="lastName" id="lastName" placeholder="Last Name" required><br><br>
+  <label for="age"> Age</label>
+  <input type="number" name="age" id="age" placeholder="Age" required><br><br>
+  <input type="submit" value="register">
+
+
+</body>
+</html>

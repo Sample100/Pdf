@@ -1,0 +1,47 @@
+<html>
+<head>
+
+<title> JS form validation uisng a sample Employee regs form </title>
+
+<script>
+   function validateEmail()
+   {
+     var email = document.getElementById("email").value;
+     var emailerror = document.getElementById("emailerror");
+     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     emailError.textContent="";
+     if(!emailPattern.test(email))
+     {
+       emailError.textContent="Invalid email address";
+       return false;
+     }
+     return true;  
+     
+   }
+
+</script>
+
+
+</head>
+<body>
+<h1> Employee Registration</h1>
+
+<form id="login form" onsubmit="return validateEmail()">
+
+
+
+<label for="email"> Email  </label>
+<input type="email" id="email" name="email" required>
+<span id="emailError" class="error"></span><br><br>
+
+<label for="pass"> Password </label>
+<input type="password" id="pass" name="pass" required>
+<span id="passError" class="error"></span><br><br>
+
+<input type="submit" value="login">
+
+</form>
+
+</body>
+</html>
+

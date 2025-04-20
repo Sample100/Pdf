@@ -1,0 +1,108 @@
+<html>
+<head>
+
+<title> JS form validation uisng a sample Employee regs form </title>
+
+<script>
+   function employeeForm()
+   {
+     var firstName =document.getElementById("firstName").value;
+     var lastName =document.getElementById("lastName").value;
+     var employeeId =document.getElementById("employeeId").value;
+     var dob =document.getElementById("dob").value;
+     var joindate =document.getElementById("joindate").value;
+     var salary =parseFloat(document.getElementById("salary").value);
+     var contactNo =document.getElementById("contactNo").value;
+     var email =document.getElementById("email").value;
+     var address =document.getElementById("address").value;
+     const nameRegx=/^[A-Za-z]+$/;
+     
+     if(!firstName.match(nameRegex))
+     {
+        alert("first name should contain only alphabet character");
+        return false;
+     }
+     if(!lastName.match(nameRegex))
+     {
+        alert("last name should contain only alphabet character");
+        return false;
+     } 
+     
+     const dobDate = new Date(dob);
+     const today = new Date();  
+     if(!dob || dobDate >= today)
+     {
+        alert("Dob must be in past");
+        return false;
+     }
+     
+     const joiningDate = new Date(joinDate);
+     if(!joinDate || joiningDate > today)
+     {
+        alert("Joining date must be after DOB and not in future");
+        return false;
+     }
+     
+     
+     
+     if(isNaN(salary) || salary <=0)
+     {
+        alert("Salary must be a positive number");
+        return false;
+     }
+     
+   }
+
+</script>
+
+
+</head>
+<body>
+<h1> Employee Registration</h1>
+
+<form onsubmit="return employeeForm()">
+
+<label for="firstName"> First Name </label>
+<input type="text" id="firstName" name="firstName" required>
+<span id="firstError" class="error"></span><br><br>
+
+<label for="lastName"> Last Name </label>
+<input type="text" id="lastName" name="lastName" required>
+<span id="lastError" class="error"></span><br><br>
+
+<label for="employeeId"> Employee ID </label>
+<input type="text" id="employeeId" name="employeeId" required>
+<span id="employeeIdError" class="error"></span><br><br>
+
+<label for="dob"> Birth Date </label>
+<input type="date" id="dob" name="dob" required>
+<span id="dobError" class="error"></span><br><br>
+
+<label for="joindate"> Date of Joining  </label>
+<input type="date" id="gender" name="" required>
+<span id="genderError" class="error"></span><br><br>
+
+<label for="salary"> Salary  </label>
+<input type="text" id="salary" name="salary" required>
+<span id="salaryError" class="error"></span><br><br>
+
+
+<label for="contactNo"> Contact No. </label>
+<input type="tel" id="contactNo" name="contactNo" required>
+<span id="contactNoError" class="error"></span><br><br>
+
+<label for="email"> Email  </label>
+<input type="email" id="email" name="email" required>
+<span id="emailError" class="error"></span><br><br>
+
+<label for="address"> Address </label>
+<input type="text" id="address" name="address" size="50" required>
+<span id="addressError" class="error"></span><br><br>
+
+<input type="submit" value="Register">
+
+</form>
+
+</body>
+</html>
+

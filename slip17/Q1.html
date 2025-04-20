@@ -1,0 +1,76 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+</head>
+<h1> MSC-CS syllabus</h1>
+<div ng-view></div>
+<body>
+
+  <div ng-app = "mainApp">
+    <p><a href="#dm">301.Design and anlaysis algorrithm</a></p>
+    <p><a href="#am">302.Data Science</a></p>
+    <p><a href="#pm">303.Cyber Security</a></p>
+    <div ng-view></div>
+    <script type="text/ng-template" id="Design.html">
+    <h2>Design and analysisi algorithm</h2>
+    <p> 
+      unit 1.ntroduction of design <br>
+      unit 2.Kruskal's algorithm<br>
+      unit 3.Divide and conquer <br>
+    </p>
+    {{message}}
+    </script>
+    
+    <script type="text/ng-template" id="Design1.html">
+    <h2>Data Science</h2>
+    <p> 
+      unit 1.Data visulaization <br>
+      unit 2.Statistical Analysis<br>
+      unit 3.Big Data Technologies<br>
+    </p>
+    {{message}}
+    </script>
+    
+    <script type="text/ng-template" id="Design2.html">
+    <h2>Cyber Security</h2>
+    <p> 
+      unit 1.Cryptography <br>
+      unit 2.Network Security<br>
+      unit 3.Cyber Laws<br>
+    </p>
+    
+7    
+    {{message}}
+    </script>
+  </div>
+    <script>
+      var mainApp=angular.module("mainApp", ['ngRoute']);
+    mainApp.config(['$routeProvider',function($routeProvider) {
+      $routeProvider
+          .when('/dm', {
+         templateUrl:'Design.html',
+         controller:'dmController'
+      })
+      .when('/am', {
+         templateUrl:'Design1.html',
+         controller:'amController'
+      })
+      .when('/pm', {
+         templateUrl:'Design2.html',
+         controller:'pmController'
+      })
+    }]);
+    mainApp.controller('dmController',function($scope) {
+     $scope.message = "this page will be used to display Digital Marketing";
+   });
+   mainApp.controller('amController',function($scope) {
+     $scope.message = "this page will be used to display Digital Marketing";
+   });
+   mainApp.controller('pmController',function($scope) {
+     $scope.message = "this page will be used to display Digital Marketing";
+   });
+              
+  </script>  
+</body>
+</html>

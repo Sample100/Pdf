@@ -1,0 +1,47 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+    function Validate()
+    {
+      let uname=document.getElementById('uname').value;
+      let pass=document.getElementById('pass').value;
+      var charseq=/^[A-Za-z]*[0-9]+$/;
+      if( uname.length>4 && uname.length<25 && pass.length>4 && pass.length<15)
+      {
+        alert("daye is correct");
+        
+      }
+      else if(uname.length==0 || pass.length==0)
+      {
+        alert("fill the information");
+        
+      }
+      else
+      {
+        alert("Enter thr valid details");
+        
+      }
+      return true;
+    }
+    </script>
+</head>
+<body ng-app>
+  <form name="studentform" novalidate>
+  UserName:
+  <input type="text" name="uname" ng-model="uname" ng-minlength="3" ng-required="true" id="uname">
+  <span ng-show="studentform.uname.$touched && studentform.uname.$error.required" style="color:red"> Username is required </span>
+  <span ng-show="studentform.uname.$error.minlength" style="color:red"> Username is too short </span>
+  <span ng-show="studentform.uname.$invalid" style="color:red"> Enter Username </span>
+  <br><br>
+  
+  Password:
+  <input type="password" name="pass" ng-model="pass" ng-minlength="8" ng-required="true" id="pass">
+  <span ng-show="studentform.pass.$touched && studentform.pass.$error.required" style="color:red"> Password is required </span>
+  <span ng-show="studentform.pass.$error.minlength" style="color:red"> Password is too short </span>
+  <span ng-show="studentform.pass.$invalid" style="color:red"> Enter Password </span>
+  <br><br>
+  <input type="button" value="submit" onclick="Validate()">
+  </form>
+</body>
+</html>

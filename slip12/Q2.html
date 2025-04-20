@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Feedback Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    form { max-width: 500px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; }
+    label { display: block; margin-top: 10px; }
+    input, select { width: 100%; padding: 8px; margin-top: 5px; }
+    .error { color: red; margin-top: 5px; }
+    button { margin-top: 15px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+
+  <form id="feedbackForm" onsubmit="return validateForm()">
+    <h2>Student Feedback Form</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" />
+    <div id="nameError" class="error"></div>
+
+    <label for="email">Email ID:</label>
+    <input type="text" id="email" name="email" />
+    <div id="emailError" class="error"></div>
+
+    <label for="mobile">Mobile No.:</label>
+    <input type="text" id="mobile" name="mobile" />
+    <div id="mobileError" class="error"></div>
+
+    <label for="feedback">Feedback:</label>
+    <select id="feedback" name="feedback">
+      <option value="">--Select--</option>
+      <option value="Not Good">Not Good</option>
+      <option value="Good">Good</option>
+      <option value="Very Good">Very Good</option>
+      <option value="Excellent">Excellent</option>
+    </select>
+    <div id="feedbackError" class="error"></div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let isValid = true;
+
+      // Clear previous errors
+      document.querySelectorAll('.error').forEach(e => e.innerText = '');
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const feedback = document.getElementById('feedback').value;
+
+      // Regular Expressions
+      const nameRegex = /^[a-zA-Z ]{2,30}$/;
+      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      const mobileRegex = /^[6-9]\\d{9}$/;
+
+      if (!nameRegex.test(name)) {
+        document.getElementById('nameError').innerText = "Please enter a valid name (only letters, 2-30 chars).";
+        isValid = false;
+      }
+
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').innerText = "Please enter a valid email address.";
+        isValid = false;
+      }
+
+      if (!mobileRegex.test(mobile)) {
+        document.getElementById('mobileError').innerText = "Please enter a valid 10-digit mobile number.";
+        isValid = false;
+      }
+
+      if (feedback === "") {
+        document.getElementById('feedbackError').innerText = "Please select a feedback rating.";
+        isValid = false;
+      }
+
+      return isValid;
+    }
+  </script>
+
+</body>
+</html>

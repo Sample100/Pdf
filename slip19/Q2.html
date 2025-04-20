@@ -1,0 +1,80 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <title> Document</title>
+</head>
+<body ng-app="myapp" ng-controller="mycntrl">
+  <div>
+    <form name="personform" novalidate="true">
+      <table border="1">
+        <tr>
+          <td>Enter Your name:</td>
+          <td>
+            <input type="text" name="name" ng-model="name" ng-pattern="/^[a-zA-Z]+$/" required>
+          </td>
+          <td>
+            <span style="color:red" ng-show="personform.name.$dirty && personform.name.invalid"></span>
+            <span ng-show="personform.name.$error.required">Name is required.</span>
+            <span ng-show="personform.name.$error.pattern">Only character are required.</span>    
+          </td>
+        </tr>     
+        <tr>
+          <td> Enter your mobile no </td>
+          <td>
+            <input type="tel" name="mobile" ng-model="mobile" ng-pattern="/^[7-9][0-9]{9}$/" ng-minlength="10" ng-maxlength="10" required>
+         </td>
+          <td>
+            <span style="color:red" ng-show="personform.mobile.$dirty && personform.mobile.invalid"></span>
+            <span ng-show="personform.mobile.$error.required">Mobile number is required.</span>
+            <span ng-show="personform.mobile.$error.pattern">Invalid format</span>    
+          </td>
+        </tr>
+        <tr>
+          <td> Enter your pin code </td>
+          <td>
+            <input type="number" name="pin" ng-model="pin" ng-pattern="/^[0-9]{6}$/" ng-minlength="6" ng-maxlength="6" required>
+          </td>
+          <td>
+            <span style="color:red" ng-show="personform.pin.$dirty && personform.pin.invalid"></span>
+            <span ng-show="personform.pin.$error.required">pin code is required.</span>
+            <span ng-show="personform.pin.$error.pattern">Only 6 digit pin are required.</span>    
+          </td>
+        </tr> 
+        <tr>
+          <td>
+            <input type="button" value="Display person info" ng-click="isShow('show')">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div ng-show="showVal">
+    <table border="1">
+      <thead>
+        <td>Name:</td>
+        <td>Mobile no:</td>
+        <td>Pin Code:</td>
+      </thead>
+      <tr>
+        <td>{{name}}</td>
+        <td> {{mobile}}</td>
+        <td>{{pin}}</td>
+      </tr>
+    </table>
+  </div>
+  <script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('mycntrl',function($scope)
+    {
+      $scope.showVal=false;
+      $scope.isShow=function(param)
+      {
+        if(param=="show")
+        {
+          $scope.showVal=true;
+        }
+      }
+    });
+  </script>
+</body>
+</html>                           

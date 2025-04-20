@@ -1,0 +1,67 @@
+<html np-app>
+<head>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <style>
+    body{
+      margin:2%;
+      font-size:120%;
+    }
+    th,td{
+      padding:20px;
+    }
+  </style>      
+</head>
+<body ng-app="myApp" ng-controller="ListController">
+  <h1> Student Details </h1>
+  <table border=1>
+    <thead>
+    <tr>
+      <th>S.No</th>
+      <th> Name</th>
+      <th>class</th>
+      <th>phone</th>
+      <th>address</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="i in student">
+      <td>{{i.sno}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.class}}</td>
+      <td>{{i.phone}}</td>
+      <td>{{i.address}}</td>
+   </tr>
+ </table>         
+</body>
+<script>
+  var app=angular.module('myApp',[]);
+  app.controller(
+    'ListController',function($scope){
+      $scope.student = [{
+        sno:1,
+        name:'Pratiksha Ambre',
+        class:'MSc',
+        phone:7378633496,
+        address:'Pathardi Phata',
+      },
+      {
+      sno:2,
+        name:'Shital Nerkar',
+        class:'MSc-1',
+        phone:7378643496,
+        address:'Naahari Nagar',
+      },
+      {
+      sno:1,
+        name:'Piya Shaikh',
+        class:'MSc-11',
+        phone:7378688496,
+        address:'Ambad',
+      },
+    ];
+  });
+</script>
+</html>  
+        
+
+  

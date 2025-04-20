@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Form</title>
+  <style>
+    form {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    input[type="submit"] {
+      width: auto;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Employee Registration Form</h2>
+
+  <form id="employeeForm">
+    <label>Name:</label>
+    <input type="text" id="name" required>
+    <div class="error" id="nameError"></div>
+
+    <label>Email:</label>
+    <input type="email" id="email" required>
+    <div class="error" id="emailError"></div>
+
+    <label>Mobile Number:</label>
+    <input type="text" id="mobile" required>
+    <div class="error" id="mobileError"></div>
+
+    <label>Department:</label>
+    <input type="text" id="department" required>
+    <div class="error" id="deptError"></div>
+
+    <label>Joining Date:</label>
+    <input type="date" id="joiningDate" required>
+    <div class="error" id="dateError"></div>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    document.getElementById("employeeForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Prevent form submission
+      
+      let isValid = true;
+
+      // Clear previous errors
+      document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+      // Regular Expressions
+      const nameRegex = /^[A-Za-z\s]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const mobileRegex = /^\d{10}$/;
+      const deptRegex = /^[A-Za-z\s]+$/;
+      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+      // Get values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+      const department = document.getElementById("department").value.trim();
+      const joiningDate = document.getElementById("joiningDate").value.trim();
+
+      // Validate Name
+      if (!nameRegex.test(name)) {
+        document.getElementById("nameError").textContent = "Please enter a valid name (letters only).";
+        isValid = false;
+      }
+
+      // Validate Email
+      if (!emailRegex.test(email)) {
+        document.getElementById("emailError").textContent = "Please enter a valid email.";
+        isValid = false;
+      }
+
+      // Validate Mobile
+      if (!mobileRegex.test(mobile)) {
+        document.getElementById("mobileError").textContent = "Enter a valid 10-digit mobile number.";
+        isValid = false;
+      }
+
+      // Validate Department
+      if (!deptRegex.test(department)) {
+        document.getElementById("deptError").textContent = "Department must contain only letters.";
+        isValid = false;
+      }
+
+      // Validate Joining Date
+      if (!dateRegex.test(joiningDate)) {
+        document.getElementById("dateError").textContent = "Enter a valid date in YYYY-MM-DD format.";
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Form submitted successfully!");
+        // You can now submit the form data to a server or reset the form
+        // e.target.submit();
+      }
+    });
+  </script>
+
+</body>
+</html>
